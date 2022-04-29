@@ -121,7 +121,7 @@ export const Space = () => {
     unsubscribeUpdateNetwork();
     dispatch(clearAllReducers());
   };
-console.log('lobbyUserJoined', lobbyUserJoined);
+  console.log('lobbyUserJoined', lobbyUserJoined);
   useEffect(() => {
     if (!conference) {
       return;
@@ -339,7 +339,7 @@ console.log('lobbyUserJoined', lobbyUserJoined);
             />
           )}
           <SnackbarBox notification={notification} />
-          {layout.disconnected && <ReconnectDialog />}
+          <ReconnectDialog open={layout.disconnected} />
           {requestToSpeak?.participantId && (
             <RequestToSpeak
               requestToSpeak={requestToSpeak}

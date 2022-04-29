@@ -11,8 +11,9 @@ import {notification} from './notification';
 import {message} from './message';
 import {chat} from './chat';
 import {color} from './color';
+import {CLEAR_ALL} from '../actions/types';
 
-export const rootReducer = combineReducers({
+export const appReducer = combineReducers({
   connection,
   profile,
   conference,
@@ -26,3 +27,11 @@ export const rootReducer = combineReducers({
   message,
   chat,
 });
+
+export const rootReducer = (state, action) => {
+  if (action.type === CLEAR_ALL) {
+    const {routing} = state;
+    state = {routing};
+  }
+  return appReducer(state, action);
+};

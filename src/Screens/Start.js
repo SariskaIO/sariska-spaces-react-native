@@ -160,9 +160,8 @@ export const Start = () => {
     conference.addEventListener(
       SariskaMediaTransport.events.conference.USER_ROLE_CHANGED,
       id => {
-        if (conference.isModerator()) {
+        console.log('enablelobby', conference.isModerator());
           conference.enableLobby();
-        }
       },
     );
     conference.addEventListener(
@@ -204,7 +203,7 @@ export const Start = () => {
     }
     setName(profile?.name);
   }, [profile]);
-  console.log('name is', name, spaceTitle, audioTrack, audioTrack?.isMuted());
+  console.log('name is', name, spaceTitle, audioTrack, audioTrack?.isMuted(), route.params);
   return (
     <BodyView>
       <ScrollView style={{width: '100%'}}>

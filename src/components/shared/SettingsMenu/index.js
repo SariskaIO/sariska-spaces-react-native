@@ -7,7 +7,7 @@ import {colors} from '../../../assets/styles/_colors';
 import {USER_ROLE} from '../../../constants';
 import {RaisedButton} from '../RaisedButton';
 
-const SettingsMenu = ({share, setShare, handleShare}) => {
+const SettingsMenu = ({share, setShare}) => {
   const [copySuccessCoHost, setCopySuccessCoHost] = React.useState(
     'Copy to Invite Co-host',
   );
@@ -58,7 +58,7 @@ const SettingsMenu = ({share, setShare, handleShare}) => {
   return (
     <Overlay
       isVisible={share}
-      onBackdropPress={handleShare}
+      onBackdropPress={handleClose}
       backdropStyle={{padding: 30, backgroundColor: colors.gray6Background}}
       overlayStyle={{
         alignItems: 'flex-end',
@@ -79,6 +79,7 @@ const SettingsMenu = ({share, setShare, handleShare}) => {
             profile.subRole === USER_ROLE.SPEAKER ||
             profile.subRole === USER_ROLE.LISTENER
           }
+          width={250}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -94,6 +95,7 @@ const SettingsMenu = ({share, setShare, handleShare}) => {
             profile.subRole === USER_ROLE.SPEAKER ||
             profile.subRole === USER_ROLE.LISTENER
           }
+          width={250}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -105,6 +107,7 @@ const SettingsMenu = ({share, setShare, handleShare}) => {
               `https://spaces.sariska.io/${profile.spaceTitle}?&spacetype=${profile.spaceType}&role=${USER_ROLE.LISTENER}`,
             )
           }
+          width={250}
         />
       </View>
     </Overlay>

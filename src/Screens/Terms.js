@@ -21,7 +21,7 @@ export const Terms = () => {
   let spaceType = route.params?.spaceType;
   let userRole = route.params?.role || profile?.subRole;
   const dispatch = useDispatch();
-
+console.log('terms', route.params);
   const options = {
     devices: ['audio'],
   };
@@ -51,6 +51,7 @@ export const Terms = () => {
       });
     } else if (route.params?.spaceId) {
       navigation.navigate('Start', {
+        spaceId: route.params?.spaceId,
         spaceType,
         role: userRole,
       });

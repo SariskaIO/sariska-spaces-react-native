@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
-import { Button } from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 import {SIZES} from '../../../assets/styles/font';
 import {colors} from '../../../assets/styles/_colors';
@@ -162,7 +162,7 @@ const ParticipantsList = ({dominantSpeakerId, localHandRaise}) => {
     ],
     listener: [{title: 'Request To Speak'}],
   };
-console.log('partlist', participants);
+  console.log('partlist', participants);
   return (
     <View>
       <View style={styles.avatarContainer}>
@@ -186,14 +186,14 @@ console.log('partlist', participants);
                 list={hostMenu[profile?.subRole]}
                 contextMenu={contextHostMenu}
                 participantId={item._id}
-                handleContextMenu={handleContextHostMenu}
-                handleClose={handleHostMenuClose}>
+                handleClose={handleHostMenuClose}
+                handleContextMenu={handleContextHostMenu}>
                 <AvatarBox
                   role={USER_ROLE.HOST}
                   isActiveSpeaker={dominantSpeakerId === item._id}
                   participantDetails={item?._identity?.user}
                   localUserId={conference.myUserId()}
-                  onClick={e => handleContextHostMenu(e, item._id)}
+                  onClick={handleContextHostMenu}
                   localHandRaise={localHandRaise}
                 />
               </ContextMenu>
@@ -210,7 +210,7 @@ console.log('partlist', participants);
                   participantDetails={item?._identity?.user}
                   localUserId={conference.myUserId()}
                   localHandRaise={localHandRaise}
-                  onClick={e => handleContextCoHostMenu(e, item._id)}
+                  onClick={handleContextCoHostMenu}
                 />
               </ContextMenu>
             ) : item._properties?.subRole === USER_ROLE.SPEAKER ? (
@@ -226,7 +226,7 @@ console.log('partlist', participants);
                   participantDetails={item?._identity?.user}
                   localUserId={conference.myUserId()}
                   localHandRaise={localHandRaise}
-                  onClick={e => handleContextSpeakerMenu(e, item._id)}
+                  onClick={handleContextSpeakerMenu}
                 />
               </ContextMenu>
             ) : item._properties?.subRole === USER_ROLE.LISTENER ? (
@@ -242,7 +242,7 @@ console.log('partlist', participants);
                   participantDetails={item?._identity?.user}
                   localUserId={conference.myUserId()}
                   localHandRaise={localHandRaise}
-                  onClick={e => handleContextListenerMenu(e, item._id)}
+                  onClick={handleContextListenerMenu}
                 />
               </ContextMenu>
             ) : null
