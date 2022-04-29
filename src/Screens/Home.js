@@ -38,6 +38,7 @@ export const Home = () => {
   useEffect(() => {
     if (route.params?.spaceId) {
       setButtonText('Join Stage');
+      console.log('pressedo', buttonText, route.params?.spaceId);
     }
   }, []);
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   Menu,
   MenuOption,
   MenuOptions,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import { colors } from '../../../assets/styles/_colors';
+import {colors} from '../../../assets/styles/_colors';
 
 export const ContextMenu = ({
   contextMenu,
@@ -16,12 +16,15 @@ export const ContextMenu = ({
   participantId,
   children,
 }) => {
-  console.log('party', participantId, list);
+  console.log('party', participantId, list, contextMenu);
   return (
     <View style={{width: '33%'}}>
-      <Menu opened={contextMenu !== false} onBackdropPress={handleContextMenu}>
+      <Menu
+        opened={contextMenu !== false}
+        onBackdropPress={handleContextMenu}
+        rendererProps={{anchorStyle: styles.anchorStyle}}>
         <MenuTrigger customStyles={triggerStyles}>{children}</MenuTrigger>
-        <MenuOptions>
+        <MenuOptions customStyles={optionsStyles}>
           {list?.length > 0 &&
             list.map((item, index) => (
               <MenuOption
@@ -29,6 +32,7 @@ export const ContextMenu = ({
                 text={item.title}
                 onSelect={() => handleClose(item.title, participantId)}
                 key={index}
+                customStyles={optionStyles}
               />
             ))}
         </MenuOptions>
@@ -38,9 +42,51 @@ export const ContextMenu = ({
 };
 const triggerStyles = {
   triggerTouchable: {
-    activeOpacity: 1,
-    style: {
-      flex: 1,
-    },
+    activeOpacity: 0,
   },
 };
+
+const optionsStyles = {
+  optionsContainer: {
+    width: 130,
+    marginLeft: 10,
+  },
+  optionsWrapper: {
+    backgroundColor: colors.gray1Background,
+  },
+  optionWrapper: {
+    backgroundColor: colors.primaryBackground,
+  },
+  optionTouchable: {
+    underlayColor: 'gold',
+    activeOpacity: 70,
+  },
+  optionText: {
+    color: colors.whiteText,
+  },
+};
+
+const optionStyles = {
+  optionTouchable: {
+    underlayColor: 'red',
+    activeOpacity: 40,
+  },
+  optionWrapper: {
+    backgroundColor: colors.primaryBackground,
+    marginTop: 1,
+    marginLeft: 2,
+    marginRight: 2,
+    marginBottom: 1,
+  },
+  optionText: {
+    color: colors.whiteText,
+    fontWeight: '700',
+  },
+};
+
+const styles = StyleSheet.create({
+  anchorStyle: {
+    backgroundColor: 'red',
+    width: 100,
+  },
+});

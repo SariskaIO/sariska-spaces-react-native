@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 import {colors} from '../../../assets/styles/_colors';
@@ -32,7 +32,7 @@ const AvatarBox = ({
     role,
   );
   return (
-    <View onPress={onClick} style={styles.container}>
+    <Pressable onPress={onClick} style={styles.container}>
       {participantDetails?.avatar ? (
         <Avatar
           source={{
@@ -41,8 +41,9 @@ const AvatarBox = ({
           size="medium"
           rounded
           overlayContainerStyle={{
-            //backgroundColor: colors.secondaryLightBackground,
-            backgroundColor: avatarColor,
+            backgroundColor: avatarColor
+              ? avatarColor
+              : colors.secondaryLightBackground,
           }}
         />
       ) : participantDetails?.name ? (
@@ -56,8 +57,9 @@ const AvatarBox = ({
             fontWeight: '700',
           }}
           overlayContainerStyle={{
-            //backgroundColor: colors.secondaryLightBackground,
-            backgroundColor: avatarColor,
+            backgroundColor: avatarColor
+              ? avatarColor
+              : colors.secondaryLightBackground,
           }}
         />
       ) : null}
@@ -101,7 +103,7 @@ const AvatarBox = ({
         {/* { coHostOrSpeaker && <img src={img} alt="host" height="15px" width= '100%'/>} */}
         <Text style={styles.role}>{role}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginBottom: 30,
+    zIndex: 9999,
   },
   iconContainer: {
     position: 'absolute',
@@ -138,5 +141,6 @@ const styles = StyleSheet.create({
   role: {
     fontWeight: '700',
     color: colors.secondaryText,
+    textTransform: 'capitalize',
   },
 });

@@ -39,10 +39,6 @@ const SpaceFooterAction = ({setLocalHandRaise}) => {
     navigation.navigate('Summary');
   };
 
-  const handleShare = () => {
-    setShare(!share);
-  };
-
   const muteAudioLocalTrack = async () => {
     await audioTrack?.mute();
     dispatch(localTrackMutedChanged());
@@ -102,7 +98,7 @@ const SpaceFooterAction = ({setLocalHandRaise}) => {
       />
       <StyledIcon
         name="ios-share-social-outline"
-        pressHandler={handleShare}
+        pressHandler={()=>setShare(true)}
         styles={{
           backgroundColor: colors.gray1Background,
           color: colors.secondaryText,
@@ -111,7 +107,6 @@ const SpaceFooterAction = ({setLocalHandRaise}) => {
       <SettingsMenu
         share={share}
         setShare={setShare}
-        handleShare={handleShare}
       />
       {Object.entries(remoteTracks).map(([key, value]) => (
         <Audio track={value?.find(track => track.isAudioTrack())} />
@@ -129,25 +124,32 @@ const styles = StyleSheet.create({
   },
   iconSet: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     height: '20%',
     alignItems: 'center',
   },
   audioIcon: {
-    marginRight: 'auto',
   },
   icon: {
     fontSize: 30,
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     textAlign: 'center',
-    paddingTop: 10,
+    paddingTop: 13,
+    borderWidth: 1,
+    borderColor: colors.primaryBorder,
+    borderRadius: 40,
+    marginRight: 10,
   },
   iconMuted: {
     fontSize: 30,
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     textAlign: 'center',
-    paddingTop: 10,
+    paddingTop: 13,
+    borderWidth: 1,
+    borderColor: colors.redBorder,
+    borderRadius: 40,
+    marginRight: 10,
   },
 });
